@@ -1,0 +1,137 @@
+ {% load static from staticfiles %}
+<html>
+<head>
+  <title>TAPE VALIDATION</title>
+  <link rel="icon" href="{% static 'dell.png' %}">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+
+
+<body>
+  <div class="loader">
+  </div>
+
+  <script type="text/javascript">
+  $(window).load(function() {
+      $(".loader").fadeOut("slow");
+  });
+  </script>
+
+
+  <style>
+
+  .loader {
+
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background: url("{% static 'loading.gif' %}") 50% 50% no-repeat rgb(249,249,249);
+      opacity: .8;
+  }
+
+
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+
+
+
+
+
+
+  <div id="content">
+
+
+    <nav class="navbar navbar-inverse" style="background-color : #007CB8;text-align:center;">
+      <div class="col-md-12 container-fluid">
+        <div id="logo" class="navbar-header " >
+
+          <div class="col-md-1">
+
+
+            <div class="col-md-6" style="font-size: 20px;padding-top:35px"><a href="{% url 'home' %}"><i class="glyphicon glyphicon-home white" style="color:white"></i></a></div>
+
+
+
+          <!-- <div class="col-md-6" style="font-size: 20px;padding-top:35px"><a ><i class="glyphicon glyphicon-chevron-left white" style="color:white"></i></a></div> -->
+          {% if request.path != "/" %}
+            <button type="submit" onclick="goBack()" class="btn btn-link col-md-6" style="font-size: 20px;padding-top:35px;color:white">
+                <span class="glyphicon glyphicon-chevron-left white"></span>
+            </button>
+          {% endif %}
+
+
+
+
+
+        </div>
+
+           <div class="col-md-1"><img  style="float:left;width:200px;height:100px;" src="{% static 'logo.jpg' %}" alt=""></div>
+
+              <div class="col-md-9"><h2 style="padding-right:325px;padding-top:10px"> TAPE VALIDATION </h2></div>
+
+              {% if request.user.is_authenticated %}
+
+            <div class = "col-md-1"> <h2 style="float:right;padding-right:20px;padding-top:10px"> <a href="{% url 'accounts:logout' %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-log-out"></span> Log out</a> </div>
+              {% endif %}
+         </div>
+
+      </div>
+    </nav>
+
+    <script type="text/javascript">
+    function goBack() {
+        window.history.back();
+      }
+    </script>
+
+<!--</nav> -->
+  <div class="wrapper">
+    {%block content%}
+    {% endblock %}
+  </div>
+
+
+
+
+<!--  <nav class="navbar navbar-inverse  navbar-fixed-bottom" role="navigation"  style="background-color : #007CB8">
+    <div class="container text-center">
+        <p class="navbar-text col-md-12 col-sm-12 col-xs-12" style="color: #FFFFFF;">FOR DELL INTERNAL PURPOSE ONLY</p>
+    </div>
+</nav> -->
+</div>
+
+</body>
+
+</html>
+
+<style>
+
+.navbar-header{
+
+text-align:center;
+width:100%;
+color: #FFFFFF;
+
+}
+
+.important{
+  width:100%;
+   margin: 0;
+  display: inline-block;
+  text-align:center;
+}
+
+
+</style>

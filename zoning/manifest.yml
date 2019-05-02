@@ -1,0 +1,8 @@
+---
+applications:
+- name: zoning
+  instances: 1
+  memory: 128M
+  command: null
+  
+ 

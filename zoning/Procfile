@@ -1,0 +1,1 @@
+web: gunicorn zoning.wsgi --workers 2

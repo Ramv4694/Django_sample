@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block content %}
+<div class = "container">
+
+
+  <p class = "important1">  <h3 class="important">
+     THIS SITE/WEB-PORTAL PRESENTS YOU THE STATUS/ANALYSIS
+     OF LONG TERM PHYSICAL TAPES IN THE NETWORKER (BACKUP SOFTWARE) ENVIRONMENT PRESERVERD BY L-EMC
+     TO COMPLY WITH LEGAL AND GOVERNANCE ASPECTS AS DICTATE BY THE ‘US’ LAWS.
+     <br>
+     <br>
+     THIS WEBSITE IS SOLELY FOR THE USE OF AUTHORIZED PERSONNEL. INDIVIDUALS
+     USING THIS WEBSITE ARE SUBJECT TO HAVING SOME OR ALL OF THEIR ACTIVITIES
+     MONITORED AND RECORDED. ANYONE USING THIS WEBSITE EXPRESSLY CONSENTS TO
+     SUCH MONITORING AND IS ADVISED THAT ANY UNAUTHORIZED OR IMPROPER USE OF
+     THIS WEBSITE MAY RESULT IN DISCIPLINARY ACTION UP TO AND INCLUDING
+     TERMINATION OF EMPLOYMENT. VIOLATORS MAY ALSO BE SUBJECT TO CIVIL AND/OR
+     CRIMINAL PENALTIES.
+     <br>
+     <br>
+     <a href = "{% url 'report' %}"> <button type ="button"  class="btn btn-primary btn-md">PROCEED</button></a> </h3>  </p>
+
+</div>
+
+
+
+    <hr style="height:5px;border:none;color:#007CB8 ;background-color:#007CB8 ;">
+
+
+
+
+
+    <style>
+    .ajaxLoading{
+      display:none;
+      text-align:center;
+    }
+    </style>
+
+
+
+
+<!--
+
+	<div class = "container-fluid" >
+		<form action="{% url 'check' %}" method="post">{% csrf_token %}
+		<h3>Enter the Networker Server Details</h3>
+  		<li><textarea class="form-control" name="message1" id = "text" rows="50" cols="30"></textarea> </li>
+  		<li style="padding:2px">
+
+        <div id="output">
+          <div class="ajaxLoading">
+            <img src="{% static 'ajax.gif' %}" alt="loading">
+          </div>
+        </div>
+
+        <button type="button" id='btnRight_code' class="btn btn-default btn-sm" >
+          <span class="glyphicon glyphicon-arrow-right"></span>
+        </button>
+
+
+        <br>
+        <br>
+        <br>
+  		<li><textarea readonly class="form-control" name ="message2" id = "text1" rows="50" cols="30"> </textarea> </li>
+  		<br>
+  		<br>
+  		<input type= "submit">
+		</form>
+  </div>
+
+  <hr style="height:5px;border:none;color:#cbbde2 ;background-color:#cbbde2 ;">
+
+
+
+
+
+<script>
+        $('#btnRight_code').click(function(e){
+            e.preventDefault();
+            $('.ajaxLoading').show();
+            $.ajax({
+                 type:"POST",
+                 url:"{% url 'home' %}",
+                 data: {
+                        servers: $.trim($("#text").val()),
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                        },
+                 success: function(pingable123){
+                      $('#text1').html(pingable123);
+                      $('.ajaxLoading').hide();
+                    }
+            });
+            return false;
+        });
+
+</script>
+
+-->
+
+
+
+
+
+
+<!-- form-textarea-1.vue -->
+<style>
+#text,#text1{
+    resize:none;
+    overflow-y: scroll;
+    height: 200px;
+    width: 45%
+    resize: none; /* Remove this if you want the user to resize the textarea */
+}
+
+.container-fluid {
+
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid li {
+    display: inline-block;
+    font-size: 20px;
+    padding: 0px;
+}
+
+
+
+#btnRight_code,#btnLeft_code{
+
+display:block;
+}
+
+
+
+.important{
+  width:100%;
+   margin: 0;
+  display: inline-block;
+  text-align:center;
+}
+
+</style>
+{% endblock %}

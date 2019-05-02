@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block content %}
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+
+
+
+    <div align="center" class="jumbotron">
+      <h2>Tapes which are not matched</h2>
+    </div>
+
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+      var a = $('#tl').dataTable( {
+        serverSide: true,
+        ajax: {
+            url: '{% url "unidentified_json" %}'
+        },
+        "columns": [
+            {"data": "barcode"},
+        ]
+      });
+    });
+    </script>
+
+
+
+
+
+
+        <div class="row container-fluid">
+
+
+          <div class="table-responsive col-md-12">
+            <hr style="height:5px;border:none;color:#007CB8 ;background-color:#007CB8 ;">
+            <div align=center><a href="{% url 'download_csv' type='unidentified' %}"><button  class="btn btn-primary">Click here to download csv</button></a></div>
+            <br>
+            <div class="container-fluid"></div>
+            <table id="tl" class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>Barcode</th>
+              </tr>
+            </thead>
+
+          </table>
+          </div>
+        </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+
+
+
+{% endblock %}

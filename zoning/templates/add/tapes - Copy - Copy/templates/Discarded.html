@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block content %}
+
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.8/js/dataTables.bootstrap.min.js"></script>
+<script src= "{% static 'js/dataTables.editor.js' %}"> </script>
+
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.8/css/dataTables.bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<link rel = "stylesheet" type="text/css" href="https://editor.datatables.net/extensions/Editor/css/editor.dataTables.min.css">
+
+
+
+
+
+
+
+<div align="center" class="jumbotron">
+  <h2>Discarded Tapes </h2>
+</div>
+
+<br>
+
+<div class = "wrapper">
+
+			<div class="center-content">
+				<div class="table ">
+						<table class="table table-hover table-bordered table-inverse table-responsive pretty" id = "tt">
+							<thead>
+								<tr>
+                  <th> id </th>
+									<th>Barcode</th>
+									<th>Volume Retention</th>
+									<th> State </th>
+									<th> Flags </th>
+									<th> capacity </th>
+									<th> Type</th>
+									<th> Server </th>
+									<th> Edit/Delete </th>
+
+
+								 </tr>
+							</thead>
+							<tbody>
+								{% for i in Test %}
+									<tr>
+                    <td>{{ forloop.counter }}
+										<td>{{ i.0 }}</td>
+										<td>{{i.1 }}</td>
+										<td>{{i.2 }}</td>
+										<td>{{i.3 }}</td>
+										<td>{{i.4 }}</td>
+										<td>{{i.5 }}</td>
+										<td>{{i.6 }}</td>
+										<td> <a href="" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a></td>
+
+
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+				</div>
+			</div>
+</div>
+
+<script>
+
+var editor;
+
+$(document).ready(function(){
+
+	var mytable = $("#tt").DataTable({
+
+
+			pagingType: "full_numbers",
+			 order: [[1, 'asc']],
+
+
+
+
+
+
+	})
+	 var oTable = $("#tt").dataTable();
+
+	  editor = new $.fn.dataTable.Editor( {
+
+		  "table": "#tt",
+			"idSrc": "id"
+
+	} );
+
+	console.log(editor)
+	console.log($("#tt").DataTable().rows().ids())
+
+	// Edit record
+	$('#tt').on('click', 'a.editor_edit', function (e) {
+			e.preventDefault();
+
+
+			editor.edit((mytable.api().row(tr)),{
+					title: 'Edit record',
+					buttons: 'Update'
+			} );
+	} );
+
+
+	// Delete a record
+	$('#tt').on('click', 'a.editor_remove', function (e) {
+			e.preventDefault();
+
+
+
+
+			editor.remove($(this).closest('tr'), {
+					title: 'Delete record',
+					message: 'Are you sure you wish to remove this record?',
+					buttons: 'Delete'
+			} );
+	} );
+
+
+
+
+
+
+
+
+
+
+   });
+   </script>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

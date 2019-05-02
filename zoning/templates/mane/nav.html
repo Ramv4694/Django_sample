@@ -1,0 +1,85 @@
+<nav class ="navbar navbar-sidebar" id="sidebar" >
+     <div class="sidebar-header">
+           <h3> VMAX </h3>
+     </div>
+	 <div class = "sidebar-nav">
+
+     <ul class="list-unstyled components">
+          <p>Artifacts</p>
+            <li class="active">
+                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Listing</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                         <li><a href="/Performance">Performance</a></li>
+                         <li><a href="/Vblock">V Block</a></li>
+
+                    </ul>
+            </li>
+
+
+
+
+             <li class="active">
+                 <a href="#homeSubmenu1" data-toggle="collapse" aria-expanded="false">Zoning</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu1">
+                         <li><a href="{% url 'add:storagegroup' %} ">Add</a></li>
+                         <li><a href="{% url 'del:delstoragegroup' %} ">Delete</a></li>
+
+                    </ul>
+            </li>
+            <li>
+                <a href="About" >About</a>
+            </li>
+            <li>
+                <a href="Contact">Contact</a>
+            </li>
+
+     </ul>
+	 </div>
+
+
+</nav>
+
+<nav class="navbar navbar-inverse navbar-dark bg-dark navbar-fixed-top">
+
+
+		<div class="navbar-header">
+            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+				<i class="glyphicon glyphicon-align-left"></i>
+                <span>Toggle Sidebar</span>
+            </button>
+
+
+
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav navbar-right">
+                 <!--- li><a href="/"><b>Home</b></a></li> -->
+				 {% if request.user.is_authenticated %}
+                 <li> <a href="/">  <span class="glyphicon glyphicon-home" style="padding-top:6px"></span></a> </li>
+				  {% endif %}
+                 {% if request.path != "/"  and request.user.is_authenticated %}
+                 <li> <button type="submit" onclick="goBack()" class="btn btn-link col-md-12" style="padding-top:18px" >
+                    <span class="glyphicon glyphicon-chevron-left white"></span>
+                </button> </li>
+                {% endif %}
+
+                  {% if request.user.is_authenticated %}
+
+                <!-- <li><a href="{% url 'accounts:logout' %}">Sign out</a></li> -->
+
+                 <li> <a href="{% url 'accounts:logout' %}"> <span class="glyphicon glyphicon-log-out" style="padding-top:6px"></span></a> </li>
+
+
+                {% endif %}
+
+            </ul>
+        </div>
+
+</nav>
+<script>
+function goBack() {
+        window.history.back();
+      }
+</script>

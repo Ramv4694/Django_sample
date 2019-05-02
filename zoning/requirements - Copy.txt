@@ -1,0 +1,9 @@
+whitenoise==1.0.4
+Django==1.11.13
+PyMySQL==0.7.11
+
+mysqlclient
+
+gunicorn
+PyU4V
+ldap

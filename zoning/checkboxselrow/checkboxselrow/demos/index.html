@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Select Multiple Rows With Checkboxes</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../css/dataTables.checkboxes.css" rel="stylesheet">
+
+</head>
+<body>
+    
+    <div class="container" style="margin:15px auto">
+        <form id="frm-example" action="" method="POST">
+            <p><b>Selected rows data:</b></p>
+            <pre id="example-console-rows"></pre>
+            <p><b>Form data as submitted to the server:</b></p>
+            <pre id="example-console-form"></pre>
+            <p><button class="btn btn-danger">View Selected</button></p>
+            <table id="mytable" class="display table table-bordered table-striped table-hover" width="100%" cellspacing="0">
+               <thead>
+                  <tr>
+                     <th></th>
+                     <th>Name</th>
+                     <th>Position</th>
+                     <th>Office</th>
+                     <th>Extn.</th>
+                     <th>Start date</th>
+                     <th>Salary</th>
+                  </tr>
+               </thead>
+               <tfoot>
+                  <tr>
+                     <th></th>
+                     <th>Name</th>
+                     <th>Position</th>
+                     <th>Office</th>
+                     <th>Extn.</th>
+                     <th>Start date</th>
+                     <th>Salary</th>
+                  </tr>
+               </tfoot>
+            </table>
+
+        </form>
+    </div>
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.dataTables.min.js"></script>
+    <script src="../js/dataTables.bootstrap.min.js"></script>
+    <script src="../js/dataTables.checkboxes.min.js"></script>
+    <script>
+        $(document).ready(function() {
+           var table = $('#mytable').DataTable({
+              'ajax': '../data.json',
+              'columnDefs': [
+                 {
+                    'targets': 0,
+                    'checkboxes': {
+                       'selectRow': true
+                    }
+                 }
+              ],
+              'select': {
+                 'style': 'multi'
+              },
+              'order': [[1, 'asc']]
+           });
+           $('#frm-example').on('submit', function(e){
+              var form = this;
+              var rows_selected = table.column(0).checkboxes.selected();
+              $.each(rows_selected, function(index, rowId){
+                 $(form).append(
+                     $('<input>')
+                        .attr('type', 'hidden')
+                        .attr('name', 'id[]')
+                        .val(rowId)
+                 );
+              });    
+              $('#example-console-rows').text(rows_selected.join(","));
+              $('#example-console-form').text($(form).serialize());
+              $('input[name="id\[\]"]', form).remove();
+              e.preventDefault();
+           });   
+        });
+    </script>
+</body>
+</html>

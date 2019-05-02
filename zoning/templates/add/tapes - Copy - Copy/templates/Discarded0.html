@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block content %}
+
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+		     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+				      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css" />          
+
+
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+		<link rel = "stylesheet" type="text/css" href="https://editor.datatables.net/extensions/Editor/css/editor.dataTables.min.css">
+		<script type="text/javascript" src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"> </script>
+
+		<script src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js"></script>
+
+
+
+
+
+<div align="center" class="jumbotron">
+  <h2>Discarded Tapes </h2>
+</div>
+
+<br>
+
+<div class = "wrapper">g
+
+			<div class="center-content">
+				<div class="table ">
+						<table class="table table-hover table-bordered table-inverse table-responsive pretty" id = "tt">
+							<thead>
+								<tr>
+									<th>Barcode</th>
+									<th>Volume Retention</th>
+									<th> State </th>
+									<th> Flags </th>
+									<th> capacity </th>
+									<th> Type</th>
+									<th> Server </th>
+									<th> Edit/Delete </th>
+
+
+								 </tr>
+							</thead>
+							<tbody>
+								{% for i in Test %}
+									<tr>
+
+										<td>{{ i.0 }}</td>
+										<td>{{i.1 }}</td>
+										<td>{{i.2 }}</td>
+
+
+										<td>{{i.3 }}</td>
+										<td>{{i.4 }}</td>
+										<td>{{i.5 }}</td>
+
+
+
+										<td>{{i.6 }}</td>
+										<td> Edit/Delete</td>
+
+
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+				</div>
+			</div>
+</div>
+
+<script>
+$(document).ready(function(){
+       var mytable = $("#tt").DataTable({
+				  	extend: 'remove',
+
+
+           "pagingType": "full_numbers",
+           order: [[1, 'asc']]
+       })
+
+
+
+
+   });
+   </script>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

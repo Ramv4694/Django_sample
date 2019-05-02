@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Isilon Snaps</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		{% include "links.html" %}
+	</head>
+	<body style="background-image: url({{ url_for('static', filename='metal_back.jpg') }})">
+		<div class = "wrapper">
+		{% include "nav.html" %}
+			<div class="center-content">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12 col-md-6 col-md-offset-3">
+							<h2 style="color:white;text-align:center;">This will be the Automation Dashboard</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<script type="text/javascript">
+             $(document).ready(function () {
+                 $('#sidebarCollapse').on('click', function () {
+                     $('#sidebar').toggleClass('active');
+                 });
+             });
+        </script>
+		{% include "footer.html" %}
+	</body>
+</html>

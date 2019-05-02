@@ -1,0 +1,7 @@
+whitenoise==1.0.4
+Django==1.8.6
+PyMySQL==0.7.11
+mysqlclient
+gunicorn
+django-queryset-csv
+git+https://github.com/monnierj/django-datatables-server-side.git

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+{% load static from staticfiles %}
+
+
+<html lang="en">
+
+    <head>
+	<title>Zoning</title>
+		<link rel="icon" href="{% static 'dell.png' %}">
+      <style>
+
+       .dropdown{
+         align-items: flex-end;
+         margin-left: 380px;
+       }
+
+
+      </style>
+
+
+        <meta charset="'utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script>
+
+
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.8/css/jquery.dataTables.min.css">
+		<script src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js"></script>
+
+		</style>
+
+
+
+
+    <body>
+
+      <div class = "wrapper">
+        {% include 'mane/nav.html' %}
+
+
+          <div class="container">
+            <div class =  "row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="stepwizard col-md-offset-3">
+                  <div class="stepwizard-row setup-panel">
+                    <div class="stepwizard-step">
+                      <a href="{% url 'add:storagegroup' %}" type="button" class="btn  btn-default" disabled="disabled">1</a>
+                      <p>Info </p>
+                    </div>
+
+                    <div class="stepwizard-step">
+                      <a href="#" type="button" class="btn btn-primary btn-circle">2</a>
+                      <p>Zoning details</p>
+                    </div>
+                    <div class="stepwizard-step">
+                      <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                      <p>Validation</p>
+                    </div>
+
+                  </div>
+                </div>
+
+
+
+              <form class="vmax-form" action = "{%url 'add:storageval'%}"  method="POST"  id="form5">
+                <br>
+
+                {% csrf_token %}
+                  <h2 style="color:black;text-align:center;">Switch Login Details</h2>
+                  <br>
+
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Switch Username</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" name="username" aria-describedby="emailHelp" placeholder="Enter Username">
+
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+                </div>
+
+
+
+
+
+
+                <div class="col-sm-12 col-md-offset-1">
+
+
+
+
+
+                </div>
+                <h2 style="color:black;text-align:center;">Switch A Details</h2>
+
+                <br> </br>
+
+
+                 <table id="mytable4" class="table table-bordered table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th> Switch </th>
+                      <th> Fabric </th>
+                      <th> VsanNo </th>
+                      <th> Hostname </th>
+                      <th> Host wwn </th>
+                      <th> Vhba No </th>
+                      <th> Array Serial no </th>
+                      <th> Array port no</th>
+                      <th> Array port wwn </th>
+
+                    </tr>
+                  </thead>
+                <tbody>
+                  {% for item in sahs %}
+
+                <tr>
+
+                  <td>{{item.Js_Switch}}</td>
+                  <td>{{item.Js_Class}} </td>
+                  <td>{{item.Js_VSan}}</td>
+                  <td>{{item.Js_Hostname}}</td>
+                  <td>{{item.Js_Wwn}}</td>
+                  <td>{{item.Js_Fabricname}}</td>
+                  <td>{{item.Js_Arrayname}}</td>
+                  <td>{{item.Js_FAPort}}</td>
+                  <td> {{item.Js_WWN}}</td>
+
+
+                </tr>
+
+
+
+                {% endfor %}
+                </tbody>
+              </table>
+
+
+              <br> </br>
+
+              <h2 style="color:black;text-align:center;">Switch B Details</h2>
+
+              <br> </br>
+
+
+              <table id="mytable5" class="table table-bordered table-striped table-hover">
+               <thead>
+                 <tr>
+                   <th> Switch </th>
+                   <th> Fabric </th>
+                   <th> VsanNo </th>
+                   <th> Hostname </th>
+                   <th> Host wwn </th>
+                   <th> Vhba No </th>
+                   <th> Array Serial no </th>
+                   <th> Array port no</th>
+                   <th> Array port wwn </th>
+
+                 </tr>
+               </thead>
+             <tbody>
+               {% for item in sbhs %}
+
+             <tr>
+
+               <td>{{item.Js_Switch}}</td>
+               <td>{{item.Js_Class}} </td>
+               <td>{{item.Js_VSan}}</td>
+               <td>{{item.Js_Hostname}}</td>
+               <td>{{item.Js_Wwn}}</td>
+               <td>{{item.Js_Fabricname}}</td>
+               <td>{{item.Js_Arrayname}}</td>
+               <td>{{item.Js_FAPort}}</td>
+               <td> {{item.Js_WWN}}</td>
+
+
+             </tr>
+
+
+
+             {% endfor %}
+             </tbody>
+           </table>
+
+           <br> </br>
+
+
+
+
+              <button type="submit" id = "sub3" class="btn btn-primary">Submit</button>
+              <br>
+
+              <br>
+
+              <br>
+
+              </form>
+
+
+
+            </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+    </body>
+    <style>
+
+    @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+
+  8u90-=
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #fafafa;
+        font-size:small;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+
+
+    }
+    .wrapper {
+      height: 100%;
+        display: flex;
+        align-items: stretch;
+
+    }
+
+    p {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.1em;
+        font-weight: 300;
+        line-height: 1.7em;
+        color: #999;
+    }
+
+    a, a:hover, a:focus {
+        color: inherit;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+
+    .navbar {
+        padding: 15px 10px;
+        background: #fff;
+        border: none;
+        border-radius: 0;
+        margin-bottom: 40px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-btn {
+        box-shadow: none;
+        outline: none !important;
+        border: none;
+    }
+
+    .line {
+        width: 100%;
+        height: 1px;
+        border-bottom: 1px dashed #ddd;
+        margin: 40px 0;
+    }
+
+    /* ---------------------------------------------------
+        SIDEBAR STYLE
+    ----------------------------------------------------- */
+    .bg-dark {
+        background-color: #343a40!important;
+    }
+
+
+    #sidebar {
+      width: 250px;
+     position: fixed;
+     top: 0;
+     left: 0;
+     height: 100vh;
+     z-index: 999;
+     background: #7386D5;
+     color: #fff;
+     transition: all 0.3s;
+    }
+
+    #sidebar.active {
+        margin-left: -250px;
+    }
+
+    #sidebar .sidebar-header {
+        padding: 60px;
+        background: #6d7fcc;
+    }
+
+    #sidebar ul.components {
+        padding: 20px 0;
+        border-bottom: 1px solid #47748b;
+    }
+
+    #sidebar ul p {
+        color: #fff;
+        padding: 10px;
+    }
+
+    #sidebar ul li a {
+        padding: 10px;
+        font-size: 1.1em;
+        display: block;
+    }
+    #sidebar ul li a:hover {
+        color: #7386D5;
+        background: #fff;
+    }
+
+    #sidebar ul li.active > a, a[aria-expanded="true"] {
+        color: #fff;
+        background: #6d7fcc;
+    }
+
+
+    a[data-toggle="collapse"] {
+        position: relative;
+    }
+
+    a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+        content: '\e259';
+        display: block;
+        position: absolute;
+        right: 20px;
+        font-family: 'Glyphicons Halflings';
+        font-size: 0.6em;
+    }
+    a[aria-expanded="true"]::before {
+        content: '\e260';
+    }
+
+
+    ul ul a {
+        font-size: 0.9em !important;
+        padding-left: 30px !important;
+        background: #6d7fcc;
+    }
+
+    ul.CTAs {
+        padding: 20px;
+    }
+
+    ul.CTAs a {
+        text-align: center;
+        font-size: 0.9em !important;
+        display: block;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+
+    a.download {
+        background: #fff;
+        color: #7386D5;
+    }
+
+    a.article, a.article:hover {
+        background: #6d7fcc !important;
+        color: #fff !important;
+    }
+
+
+
+    /* ---------------------------------------------------
+        CONTENT STYLE
+    ----------------------------------------------------- */
+    #content {
+        padding: 20px;
+        min-height: 100vh;
+        transition: all 0.3s;
+    }
+
+    /* ---------------------------------------------------
+        MEDIAQUERIES
+    ----------------------------------------------------- */
+    @media (max-width: 768px) {
+        #sidebar {
+            margin-left: -250px;
+        }
+        #sidebar.active {
+            margin-left: 0;
+        }
+        #sidebarCollapse span {
+            display: none;
+        }
+    }
+
+    .navbar navbar-inverse navbar-fixed-top{
+      background: #7386D5;
+
+
+    }
+
+
+
+
+
+
+      .container-fluid{
+        font-size:20px;
+      }
+
+      #title{
+        font-size : 24px;
+
+      }
+      .form-top{
+        overflow:hidden;
+        padding:0 25px 15px 25px;
+        background: #444;
+        background: rgba(0,0,0,0.8);
+        -moz-border-radius:4px 4px 0 0; -webkit-border-radius:4px 4px 0 0;border-radius:4px 4px 0 0;
+        text-align:left;
+        color:white;
+
+      }
+      .form-bottom{
+        padding:25px 25px 30px 25px;
+        background: #444;
+        background: rgba(0,0,0,0.5);
+        -moz-border-radius:0 0 4px 4px; -webkit-border-radius:0 0 4px 4px;border-radius:0 0 4px 4px;
+        text-align:left;
+        color:white;
+      }
+      .center-content{
+        margin:0 auto;
+        margin-top:125px;
+      }
+      .form-control {
+    display: block;
+    width: 20%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+      footer{
+         bottom:0;
+         position:absolute;
+         margin-bottom:0px;
+         width:100%;
+         color:white;
+         text-align:center;
+         background:rgba(0,0,0,0.6);;
+      }
+      .table {
+        border-radius: 5px;
+        width: 50%;
+        margin: 0px auto;
+        float: none;
+      }
+      .table th {
+        text-align: center;
+      }
+      .stepwizard-step p {
+          margin-top: 10px;
+      }
+      .stepwizard-row {
+          display: table-row;
+      }
+      .stepwizard {
+          display: table;
+          width: 70%;
+          position: relative;
+      }
+
+      .stepwizard-step button[disabled] {
+          opacity: 1 !important;
+          filter: alpha(opacity=100) !important;
+      }
+      .stepwizard-row:before {
+          top: 14px;
+          bottom: 0;
+          position: absolute;
+          content: " ";
+          width: 100%;
+          height: 1px;
+          background-color: #ccc;
+          z-order: 0;
+      }
+      .stepwizard-step {
+          display: table-cell;
+          text-align: center;
+          position: relative;
+      }
+      .btn-circle {
+
+      }
+
+
+    </style>
+
+   <script>
+
+    $(document).ready(function(){
+           var mytable = $("#mytable4").DataTable({
+
+
+               "pagingType": "full_numbers",
+               order: [[1, 'asc']],
+               "columnDefs": [
+                 { "width": "40px", "targets": 0 }
+               ]
+           })
+
+
+
+         var mytable = $("#mytable5").DataTable({
+
+
+             "pagingType": "full_numbers",
+             order: [[1, 'asc']]
+         })
+
+         $('#sidebarCollapse').on('click', function () {
+             $('#sidebar').toggleClass('active');
+         });
+
+       });
+
+      </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

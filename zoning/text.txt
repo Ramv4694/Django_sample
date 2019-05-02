@@ -1,0 +1,18 @@
+Location (Hopkinton / Durham / Frankin)
+
+Class (Mc/Bc) 
+
+Model   ----> Cisco / Brocade
+
+Fabric Name  ( A and B)
+
+ClusterName/Host
+
+
+
+
+##########
+
+
+One table with all arrays , location and class
+
