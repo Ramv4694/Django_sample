@@ -51,7 +51,7 @@ python3-ldap==0.9.8.4
 pytz==2018.3
 PyU4V==1.0.2
 pyvim==2.0.24
-pywin32==223
+pywin32==301
 requests==2.18.4
 simplejson==3.16.0
 six==1.11.0
