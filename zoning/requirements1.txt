@@ -33,7 +33,7 @@ mysql-connector==2.1.4
 mysql-connector-python==2.1.7
 mysql-python==1.2.5
 paramiko==2.4.0
-Pillow==5.1.0
+Pillow==9.0.1
 pipreqs==0.3.5
 prompt-toolkit==2.0.8
 py==1.4.34
